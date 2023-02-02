@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onDigit(view: View) {
-        tvEntry.append(((view as Button).text))
+        tvEntry.append((view as Button).text)
         lastNumeric = true
         lastDot = false
     }
@@ -68,11 +68,12 @@ class MainActivity : AppCompatActivity() {
                     // if (prefix.isNotEmpty()) {
                     if (prefix == "-") {
                         leftSplit = prefix + leftSplit
-                        Log.i("ERic", "leading -")
+                        Log.i("Eric", "leading -")
                     }
 
                     tvEntry.text =
-                        removeDotZero((leftSplit.toDouble() - rightSplit.toDouble()).toString())
+                        removeDotZero((leftSplit.toDouble() -
+                                rightSplit.toDouble()).toString())
 
                 // Handle addition
                 } else if (tvValue.contains("+")) {
@@ -85,7 +86,8 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         tvEntry.text =
-                            removeDotZero((leftSplit.toDouble() + rightSplit.toDouble()).toString())
+                            removeDotZero((leftSplit.toDouble() +
+                                    rightSplit.toDouble()).toString())
 
                 // Handle multiplication
                 } else if (tvValue.contains("*")) {
@@ -98,7 +100,8 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     tvEntry.text =
-                        removeDotZero((leftSplit.toDouble() * rightSplit.toDouble()).toString())
+                        removeDotZero((leftSplit.toDouble() *
+                                rightSplit.toDouble()).toString())
 
                 // Handle division
                 } else if (tvValue.contains("/")) {
@@ -111,7 +114,8 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     tvEntry.text =
-                        removeDotZero((leftSplit.toDouble() / rightSplit.toDouble()).toString())
+                        removeDotZero((leftSplit.toDouble() /
+                                rightSplit.toDouble()).toString())
                 }
 
             } catch (e: java.lang.ArithmeticException) {
