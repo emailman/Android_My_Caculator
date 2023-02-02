@@ -37,14 +37,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun onOperator(view: View) {
-        if (lastNumeric &&
-                !isOperatorAdded(tvEntry.text.toString())) {
-            tvEntry.append((view as Button).text)
-            lastNumeric = false
-            lastDot = false
+    fun onOperator(view: View){
+        tvEntry.text?.let{
+            if(!isOperatorAdded(it.toString())){
+                tvEntry.append((view as Button).text)
+                lastNumeric = false
+                lastDot = false
+            }
         }
     }
+
 
     fun onEqual(view: View) {
         if (lastNumeric) {
@@ -125,13 +127,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun isOperatorAdded(value: String) : Boolean {
-        return if (value.startsWith("-")) {
+        return if(value.startsWith("-") && value.length == 1) {
             false
-        } else {
-            value.contains("/") ||
-                    value.contains("*") ||
-                    value.contains("-") ||
-                    value.contains("+")
+        }else if (value.contains("/") ||
+            value.contains("*") ||
+            value.contains("+")){
+            true
+        }else if (value.length > 1){
+            val temp = value.subSequence(1, value.length-1)
+            temp.contains("-")
+        }else{
+            false
         }
     }
 
